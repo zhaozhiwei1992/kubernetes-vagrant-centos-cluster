@@ -4,7 +4,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 timedatectl set-timezone Asia/Shanghai
 rm /etc/yum.repos.d/CentOS-Base.repo
 cp /vagrant/yum/*.* /etc/yum.repos.d/
-mv /etc/yum.repos.d/CentOS7-Base-163.repo /etc/yum.repos.d/CentOS-Base.repo
+mv /etc/yum.repos.d/CentOS7-Base-ali.repo /etc/yum.repos.d/CentOS-Base.repo
 # using socat to port forward in helm tiller
 # install  kmod and ceph-common for rook
 yum install -y wget curl conntrack-tools vim net-tools telnet tcpdump bind-utils socat ntp kmod ceph-common dos2unix
@@ -148,6 +148,7 @@ then
 fi
 
 echo "Configure Kubectl to autocomplete"
-source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
-echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
+#source < "(kubectl completion bash)" # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+echo 'eval "$(kubectl completion bash)"' >> ~/.bashrc
+source ~/.bashrc
 
